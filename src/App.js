@@ -27,6 +27,17 @@ class App extends React.Component {
             return words[chosenWord].word;
         }
     }
+    
+    render() {
+        
+        const { word } = this.state;
+        
+        return (
+            <section>
+                {word}
+            </section>
+        )
+    }
 }
 
 export default App;
