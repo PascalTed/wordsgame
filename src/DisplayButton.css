@@ -1,0 +1,7 @@
+#game-button {
+    border-radius: 5px;
+    background-color: green;
+    cursor: pointer;
+    display: inline;
+    padding: 5px;
+}
