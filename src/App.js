@@ -1,5 +1,6 @@
 import React from 'react';
 import DisplayButton from './DisplayButton';
+import DisplayScore from './DisplayScore';
 import './App.css';
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -63,19 +64,28 @@ class App extends React.Component {
     
     render() {
         
-        const { word } = this.state;
+        const { word, score } = this.state;
         
         return (
             
             <div className="App">
-                <p>
-                    {word}
-                </p>
             
-                <DisplayButton
-                onClick={this.handleButtonClick}
-                buttonState={this.buttonState()}
-                />
+                <div>
+            
+                    <DisplayScore
+                        score={score}
+                    />
+            
+                    <p>
+                        {word}
+                    </p>
+
+                    <DisplayButton
+                    onClick={this.handleButtonClick}
+                    buttonState={this.buttonState()}
+                    />
+
+                </div>
 
             </div>
             
