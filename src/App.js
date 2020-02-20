@@ -2,6 +2,7 @@ import React from 'react';
 import DisplayButton from './DisplayButton';
 import DisplayScore from './DisplayScore';
 import DisplayLetters from './DisplayLetters';
+import DisplayWord from './DisplayWord';
 import './App.css';
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -184,7 +185,7 @@ class App extends React.Component {
     
     render() {
         
-        const { word, score } = this.state;
+        const { word, score, gameState } = this.state;
         
         return (
             
@@ -206,6 +207,14 @@ class App extends React.Component {
                     />
 
                 </div>
+                
+                <DisplayWord
+                        displayWord={gameState === "stop" ? false : this.hiddenWord()}
+                        clue= {words[chosenWord].clue}
+                        wordlength={word.length}
+                        gameState={gameState}
+                />
+
 
                 <div id="lettersList">
                     {letters.map((letter, index) => (
