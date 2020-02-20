@@ -97,6 +97,8 @@ class App extends React.Component {
             return 'letterNotInWord';
         } else if (this.state.gameState !== "start") {
             return 'letterNotAllowed';
+        } else if (!letterUsed.includes(letter) && this.state.gameState === "start") {
+            return 'noClickLetter';
         }
     }
 
