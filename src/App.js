@@ -61,7 +61,33 @@ class App extends React.Component {
         if (gameState === "stop") {
             this.setState((prevState, props) => ({
                 gameState: prevState.gameState = "start"}));
-        } 
+        // Pour rejouer le mot
+        } else if (gameState === "start") {
+            
+                letterUsed = []
+                console.log("letterused[]")
+            this.setState((prevState, props) => ({
+                    chance : prevState.chance = 6, score : prevState.score - this.state.word.length
+                }));
+          
+            console.log("this.state.gameState");           
+
+        } else if (gameState === "mot trouvé") {
+
+            
+                letterUsed = []
+                chosenWord = chosenWord + 1;
+                this.setState({gameState: "start", word : this.generateWord(), chance : 6
+            });
+          
+
+        } else if (gameState === "Fini" || gameState === "perdu") {
+            letterUsed = []
+            chosenWord = 0;
+            this.setState({gameState: "start", score : 0, chance : 6, word : this.generateWord()});
+        }
+        
+     
     }
     
     handleLetterClick = (e, letter) => {
