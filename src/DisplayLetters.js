@@ -4,7 +4,7 @@ import './DisplayLetters.css';
 const DisplayLetters = function (props) {
 	
     return (
-        <div className = "centerLetter" onClick= {(e) => props.onClick(e,props.letter)}>
+        <div className = {`centerLetter ${props.verified}`} onClick= {(e) => props.onClick(e,props.letter)}>
             <div   className="letter"> 
                 {props.letter}
             </div>
