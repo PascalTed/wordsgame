@@ -3,6 +3,7 @@ import DisplayButton from './DisplayButton';
 import DisplayScore from './DisplayScore';
 import DisplayLetters from './DisplayLetters';
 import DisplayWord from './DisplayWord';
+import DisplayGameState from './DisplayGameState';
 import './App.css';
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -89,6 +90,27 @@ class App extends React.Component {
         }
         
      
+    }
+    
+    displayGameState () {
+
+        const {gameState, word} = this.state;
+
+        /*if (gameState === "start") {      
+            return "Partie en cours";
+        } */
+        if (gameState === "Fini") {
+           return "BRAVO !!! vous avez trouvé le dernier mot :";            
+        }
+        /*else if (gameState === "stop") {
+            return 'Cliquer pour commencer';
+        }*/
+        else if (gameState === "mot trouvé") {    
+            return "BRAVO !!! vous avez trouvé le mot :";
+        }
+        else if (gameState === "perdu") {    
+            return "PERDU !!!";
+        }
     }
     
     handleLetterClick = (e, letter) => {
@@ -206,14 +228,20 @@ class App extends React.Component {
                     buttonState={this.buttonState()}
                     />
 
-                </div>
+                    <DisplayGameState
+                            displayGameState={this.displayGameState()}
+                            gameState = {gameState}
+                    />
+
+                    <DisplayWord
+                            displayWord={gameState === "stop" ? false : this.hiddenWord()}
+                            clue= {words[chosenWord].clue}
+                            wordlength={word.length}
+                            gameState={gameState}
+                    />
                 
-                <DisplayWord
-                        displayWord={gameState === "stop" ? false : this.hiddenWord()}
-                        clue= {words[chosenWord].clue}
-                        wordlength={word.length}
-                        gameState={gameState}
-                />
+                
+                </div>
 
 
                 <div id="lettersList">
