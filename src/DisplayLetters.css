@@ -1,0 +1,24 @@
+.centerLetter{
+    display: flex;
+
+    border-radius: 5px;
+    border: 1px solid black;
+
+    height: 40px;
+    box-sizing: border-box;
+    margin: 5px;
+    min-width: 40px;
+}
+
+.centerLetter:hover {
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+}
+
+.letter {          
+    
+    /*padding: 2px;*/
+    margin: auto;
+    font-weight: bold;
+}
