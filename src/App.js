@@ -1,12 +1,14 @@
 import React from 'react';
 import DisplayButton from './DisplayButton';
 import DisplayScore from './DisplayScore';
+import DisplayLetters from './DisplayLetters';
 import './App.css';
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 const words = [{word :'ELEPHANT', clue: 'pachyderme'}, {word :'SOLEIL', clue: 'étoile'}, {word :'CERISE', clue: 'fruit'}];
 let chosenWord = 0;
+let letterUsed = [];
 
 class App extends React.Component {
     
@@ -84,6 +86,16 @@ class App extends React.Component {
                     onClick={this.handleButtonClick}
                     buttonState={this.buttonState()}
                     />
+
+                </div>
+
+                <div id="lettersList">
+                    {letters.map((letter, index) => (
+                        <DisplayLetters
+                            letter={letter}
+                            key={index}
+                        />
+                    ))}
 
                 </div>
 
