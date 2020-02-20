@@ -1,5 +1,5 @@
 import React from 'react'; 
-import './App.css';
+import './DisplayWord.css';
 
 const DisplayWord = function (props) {
 	if (props.gameState === "stop" || props.gameState === "perdu") {
