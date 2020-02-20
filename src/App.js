@@ -64,6 +64,29 @@ class App extends React.Component {
         } 
     }
     
+    handleLetterClick = (e, letter) => {
+
+        const {gameState} = this.state;
+        
+     
+        // Ajouter lettre cliquée et vérifier
+        if (gameState === "start") {
+            console.log(this.state.gameState)
+            if (!letterUsed.includes(letter)) {
+            letterUsed = [...letterUsed, letter]      
+
+             } else {
+                e.preventDefault();
+            console.log(letterUsed)
+             }
+
+        //Désactivation du Clique  sur toutes les lettres 
+        } else if (gameState === "perdu" || gameState === "stop" || gameState === "mot trouvé" || gameState === "Fini") {
+            e.preventDefault();
+        }
+     
+    }
+    
     render() {
         
         const { word, score } = this.state;
@@ -94,6 +117,7 @@ class App extends React.Component {
                         <DisplayLetters
                             letter={letter}
                             key={index}
+                            onClick={this.handleLetterClick}
                         />
                     ))}
 
