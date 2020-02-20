@@ -4,6 +4,7 @@ import DisplayScore from './DisplayScore';
 import DisplayLetters from './DisplayLetters';
 import DisplayWord from './DisplayWord';
 import DisplayGameState from './DisplayGameState';
+import DisplayNumberTest from './DisplayNumberTest';
 import './App.css';
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -238,6 +239,11 @@ class App extends React.Component {
                             clue= {words[chosenWord].clue}
                             wordlength={word.length}
                             gameState={gameState}
+                    />
+                                
+                    <DisplayNumberTest
+                        gameState = {gameState}
+                        chance = {this.state.chance}
                     />
                 
                 
