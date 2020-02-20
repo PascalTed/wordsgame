@@ -87,6 +87,19 @@ class App extends React.Component {
      
     }
     
+    verifiedLetters(letter) {
+
+        const {word} = this.state;
+
+        if(letterUsed.includes(letter) && word.includes(letter)) {
+            return 'letterInWord';
+        } else if (letterUsed.includes(letter) && !word.includes(letter)) {
+            return 'letterNotInWord';
+        } else if (this.state.gameState !== "start") {
+            return 'letterNotAllowed';
+        }
+    }
+    
     render() {
         
         const { word, score } = this.state;
@@ -118,6 +131,7 @@ class App extends React.Component {
                             letter={letter}
                             key={index}
                             onClick={this.handleLetterClick}
+                            verified={this.verifiedLetters(letter)}
                         />
                     ))}
 
