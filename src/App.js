@@ -74,7 +74,7 @@ class App extends React.Component {
             console.log(this.state.gameState)
             if (!letterUsed.includes(letter)) {
             letterUsed = [...letterUsed, letter]      
-
+            this.checkWord()
              } else {
                 e.preventDefault();
             console.log(letterUsed)
@@ -98,6 +98,60 @@ class App extends React.Component {
         } else if (this.state.gameState !== "start") {
             return 'letterNotAllowed';
         }
+    }
+
+    checkWord () {
+
+        const {word} = this.state;
+        console.log(this.hiddenWord())
+          
+        
+        let addToScore = 0
+        for(let i = 0; i < word.length; i++) {
+            if (word[i] === letterUsed[letterUsed.length-1]) {
+                addToScore += 1
+            }
+        }
+
+        if (word === this.hiddenWord()) {
+           console.log(chosenWord)
+            if ((chosenWord + 1) === words.length) {
+                this.setState((prevState, props) => ({
+                gameState : prevState.gameState = "Fini", score : prevState.score += words.length + word.length + addToScore
+                }));
+
+            } else {
+                this.setState((prevState, props) => ({
+                gameState : prevState.gameState = "mot trouvé", score : prevState.score += word.length + addToScore
+                }));
+            }
+        } else {
+            
+            console.log(addToScore)
+            if (!word.includes(letterUsed[letterUsed.length-1])) {
+                console.log("test")
+                if (this.state.chance === 1) {
+                    console.log("test2")
+                    this.setState((prevState, props) => ({
+                    gameState : prevState.gameState = "perdu", score : prevState.score - 1, chance : prevState.chance - 1
+                    }));
+                 } else {
+                this.setState((prevState, props) => ({
+                score : prevState.score - 1, chance : prevState.chance - 1
+                }));
+            }
+            } else {
+                this.setState((prevState, props) => ({
+                score : prevState.score + addToScore
+                })); 
+            } 
+        }
+        
+    }
+
+    hiddenWord () {
+        
+        return this.state.word.replace(/\w/g, (letter) => (letterUsed.includes(letter) ? letter : ' _ '));
     }
     
     render() {
