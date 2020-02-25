@@ -1,36 +1,90 @@
-.centerLetter{
-    display: flex;
-
-    border-radius: 5px;
-    border: 1px solid black;
-
-    height: 40px;
-    box-sizing: border-box;
-    margin: 5px;
-    min-width: 40px;
+#lettersList > div {
+    width: 50px;
+    height: 50px;
 }
 
+.centerLetter {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    background-color: rgb(100, 149, 237);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: -1px 2px 6px 2px rgba(0, 0, 0, 0.3) inset;
+}
 .centerLetter:hover {
     cursor: pointer;
-    background-color: gray;
-    color: white;
+    /*background-color: gray;
+    color: white;*/
 }
 
 .centerLetter.letterInWord {
-  background-color: rgb(100, 149, 237);
-  cursor: not-allowed;
+    animation: animLetterInWord 2s;
+    animation-fill-mode :  forwards;
+}
 
+@keyframes animLetterInWord {
+    
+    from {
+        transform: scale(1);
+        }
+    
+    10% {
+        transform: scale(0.5 ); 
+        }
+
+    50% {
+        transform: scale(4) rotateY(360deg);
+        }
+    
+    75% {
+        background-color: transparent;
+        cursor: pointer;
+        }
+
+    to {
+        background-color: #00e600;
+        cursor: not-allowed;
+    }
 }
 
 .centerLetter.letterNotInWord {
-  background-color: red;
-  cursor: not-allowed;
+    animation: animLetterNotInWord 2s;
+    animation-fill-mode :  forwards;
 
+}
+
+@keyframes animLetterNotInWord {
+    
+    from {
+        transform: scale(1);
+        }
+    
+    10% {
+        transform: scale(0.5 ); 
+        }
+
+    50% {
+        transform: scale(4) rotateY(360deg);
+        }
+    
+    75% {
+        background-color: transparent;
+        cursor: pointer;
+        }
+
+    to {
+        background-color: red;
+        cursor: not-allowed;
+    }
 }
 
 .centerLetter.letterNotAllowed {
 
-  cursor: not-allowed;
+    cursor: not-allowed;
+    background-color: #bfbfbf;
 
 }
 
@@ -39,4 +93,6 @@
     /*padding: 2px;*/
     margin: auto;
     font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 1px black;
 }
