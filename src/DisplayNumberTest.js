@@ -5,7 +5,7 @@ const DisplayNumberTest = function (props) {
 
 	
         
-        if (props.gameState === "start") {
+        if (props.gameState === "start" || props.gameState === "animation") {
             return (<p>il vous reste {props.chance} essais</p>);
         }
         else if (props.gameState === "perdu") {
