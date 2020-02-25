@@ -11,7 +11,6 @@ const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'
 
 const words = [{word :'ELEPHANT', clue: 'pachyderme'}, {word :'SOLEIL', clue: 'étoile'}, {word :'CERISE', clue: 'fruit'}];
 let chosenWord = 0;
-let letterUsed = [];
 
 class App extends React.Component {
     
@@ -21,7 +20,9 @@ class App extends React.Component {
             word : this.generateWord(),
             gameState : "stop",
             score: 0,
-            chance: 6
+            chance: 6,
+            lettersUsed: [],
+            lettersUsedAfter : [],
         };
     }
     
@@ -42,7 +43,7 @@ class App extends React.Component {
         if (gameState === "stop") {
             return "Commencer à jouer";
 
-        } else if (gameState === "start" && chance > 0) {
+        } else if ((gameState === "start" || gameState === "animation") && chance > 0) {
             console.log(chance)
             return "Rejouer le mot";
 
@@ -58,7 +59,7 @@ class App extends React.Component {
     
     handleButtonClick = () => {
 
-        const {gameState, chance} = this.state;
+        const {gameState, chance, lettersUsed} = this.state;
         console.log(gameState)
 
         if (gameState === "stop") {
@@ -67,10 +68,9 @@ class App extends React.Component {
         // Pour rejouer le mot
         } else if (gameState === "start") {
             
-                letterUsed = []
-                console.log("letterused[]")
+                console.log("lettersUsed[]")
             this.setState((prevState, props) => ({
-                    chance : prevState.chance = 6, score : prevState.score - this.state.word.length
+                    lettersUsed : prevState.lettersUsed = [], lettersUsedAfter : prevState.lettersUsedAfter = [], chance : prevState.chance = 6, score : prevState.score - this.state.word.length
                 }));
           
             console.log("this.state.gameState");           
@@ -78,16 +78,14 @@ class App extends React.Component {
         } else if (gameState === "mot trouvé") {
 
             
-                letterUsed = []
                 chosenWord = chosenWord + 1;
-                this.setState({gameState: "start", word : this.generateWord(), chance : 6
+                this.setState({lettersUsed : [], lettersUsedAfter : [], gameState: "start", word : this.generateWord(), chance : 6
             });
           
 
         } else if (gameState === "Fini" || gameState === "perdu") {
-            letterUsed = []
             chosenWord = 0;
-            this.setState({gameState: "start", score : 0, chance : 6, word : this.generateWord()});
+            this.setState({lettersUsed : [], gameState: "start", score : 0, chance : 6, word : this.generateWord()});
         }
         
      
@@ -116,22 +114,24 @@ class App extends React.Component {
     
     handleLetterClick = (e, letter) => {
 
-        const {gameState} = this.state;
+        const {gameState, lettersUsed} = this.state;
         
      
         // Ajouter lettre cliquée et vérifier
         if (gameState === "start") {
             console.log(this.state.gameState)
-            if (!letterUsed.includes(letter)) {
-            letterUsed = [...letterUsed, letter]      
-            this.checkWord()
+            if (!lettersUsed.includes(letter)) {
+                     
+                this.setState((prevState) => ({
+                    gameState: "animation", lettersUsed : prevState.lettersUsed = [...lettersUsed, letter]
+                }),this.timeToCheckWord);
              } else {
                 e.preventDefault();
-            console.log(letterUsed)
+            console.log(lettersUsed)
              }
 
         //Désactivation du Clique  sur toutes les lettres 
-        } else if (gameState === "perdu" || gameState === "stop" || gameState === "mot trouvé" || gameState === "Fini") {
+        } else if (gameState === "animation" || gameState === "perdu" || gameState === "stop" || gameState === "mot trouvé" || gameState === "Fini") {
             e.preventDefault();
         }
      
@@ -139,48 +139,53 @@ class App extends React.Component {
     
     verifiedLetters(letter) {
 
-        const {word} = this.state;
+        const {word, lettersUsed} = this.state;
 
-        if(letterUsed.includes(letter) && word.includes(letter)) {
+        if(lettersUsed.includes(letter) && word.includes(letter)) {
             return 'letterInWord';
-        } else if (letterUsed.includes(letter) && !word.includes(letter)) {
+        } else if (lettersUsed.includes(letter) && !word.includes(letter)) {
             return 'letterNotInWord';
         } else if (this.state.gameState !== "start") {
             return 'letterNotAllowed';
-        } else if (!letterUsed.includes(letter) && this.state.gameState === "start") {
+        } else if (!lettersUsed.includes(letter) && this.state.gameState === "start") {
             return 'noClickLetter';
         }
     }
 
-    checkWord () {
+    timeToCheckWord = () => {
+        console.log("time");
+        setTimeout(this.checkWord,2000);
+    }
 
-        const {word} = this.state;
-        console.log(this.hiddenWord())
+    checkWord = () => {
+
+        const {word, lettersUsed, lettersUsedAfter} = this.state;
+        console.log(this.hiddenWord(lettersUsed))
           
         
         let addToScore = 0
         for(let i = 0; i < word.length; i++) {
-            if (word[i] === letterUsed[letterUsed.length-1]) {
+            if (word[i] === lettersUsed[lettersUsed.length-1]) {
                 addToScore += 1
             }
         }
 
-        if (word === this.hiddenWord()) {
+        if (word === this.hiddenWord(lettersUsed)) {
            console.log(chosenWord)
             if ((chosenWord + 1) === words.length) {
                 this.setState((prevState, props) => ({
-                gameState : prevState.gameState = "Fini", score : prevState.score += words.length + word.length + addToScore
+                lettersUsedAfter : prevState.lettersUsed, gameState : prevState.gameState = "Fini", score : prevState.score += words.length + word.length + addToScore
                 }));
 
             } else {
                 this.setState((prevState, props) => ({
-                gameState : prevState.gameState = "mot trouvé", score : prevState.score += word.length + addToScore
+                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot trouvé", score : prevState.score += word.length + addToScore
                 }));
             }
         } else {
             
             console.log(addToScore)
-            if (!word.includes(letterUsed[letterUsed.length-1])) {
+            if (!word.includes(lettersUsed[lettersUsed.length-1])) {
                 console.log("test")
                 if (this.state.chance === 1) {
                     console.log("test2")
@@ -189,26 +194,27 @@ class App extends React.Component {
                     }));
                  } else {
                 this.setState((prevState, props) => ({
-                score : prevState.score - 1, chance : prevState.chance - 1
+                gameState : "start", score : prevState.score - 1, chance : prevState.chance - 1
                 }));
             }
             } else {
                 this.setState((prevState, props) => ({
-                score : prevState.score + addToScore
+                gameState : "start",lettersUsedAfter : prevState.lettersUsed, score : prevState.score + addToScore
                 })); 
             } 
         }
         
     }
 
-    hiddenWord () {
+    hiddenWord (letterInUsed) {
         
-        return this.state.word.replace(/\w/g, (letter) => (letterUsed.includes(letter) ? letter : ' _ '));
+        const { word } = this.state;
+         return word.replace(/\w/g, (letter) => (letterInUsed.includes(letter) ? letter : ' _ '));
     }
     
     render() {
         
-        const { word, score, gameState } = this.state;
+        const { word, score, gameState, lettersUsedAfter } = this.state;
         
         return (
             
@@ -235,7 +241,7 @@ class App extends React.Component {
                     />
 
                     <DisplayWord
-                            displayWord={gameState === "stop" ? false : this.hiddenWord()}
+                            displayWord={gameState !== "stop" ? this.hiddenWord(lettersUsedAfter) : false} 
                             clue= {words[chosenWord].clue}
                             wordlength={word.length}
                             gameState={gameState}
