@@ -150,7 +150,7 @@ class App extends React.Component {
             return 'noClickLetter'; 
  
             
-        }else if (this.state.gameState === "initstart") {
+        }else if (this.state.gameState === "initStart") {
             return 'initletter';
         
         
