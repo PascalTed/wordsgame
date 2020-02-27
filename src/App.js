@@ -43,7 +43,7 @@ class App extends React.Component {
         if (gameState === "stop") {
             return "Commencer à jouer";
 
-        } else if (gameState === "start" || gameState === "animation" || gameState === "initstart") {
+        } else if (gameState === "start" || gameState === "animation" || gameState === "initStart") {
             console.log(chance)
             return "Découvrir le mot";
 
@@ -118,7 +118,7 @@ class App extends React.Component {
         
      
         // Ajouter lettre cliquée et vérifier
-        if (gameState === "start" || gameState === "initstart") {
+        if (gameState === "start" || gameState === "initStart") {
             console.log(this.state.gameState)
             if (!lettersUsed.includes(letter)) {
                      
