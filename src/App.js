@@ -64,28 +64,28 @@ class App extends React.Component {
 
         if (gameState === "stop") {
             this.setState((prevState, props) => ({
-                gameState: prevState.gameState = "start"}));
-        // Pour rejouer le mot
-        } else if (gameState === "start") {
-            
+                gameState: prevState.gameState = "initStart"}));
+        // Pour découvrir le mot (fera perdre des points)
+        } else if (gameState === "initStart" || gameState === "start") {
+                const decouv = this.state.word.split("");
                 console.log("lettersUsed[]")
             this.setState((prevState, props) => ({
-                    lettersUsed : prevState.lettersUsed = [], lettersUsedAfter : prevState.lettersUsedAfter = [], chance : prevState.chance = 6, score : prevState.score - this.state.word.length
-                }));
+                    lettersUsed : prevState.lettersUsed = [...lettersUsed, ...decouv], gameState: "découvrir mot"
+                }), this.timeToCheckWord);
           
             console.log("this.state.gameState");           
 
-        } else if (gameState === "mot trouvé") {
+        } else if (gameState === "mot trouvé" || gameState === "mot découvert") {
 
             
                 chosenWord = chosenWord + 1;
-                this.setState({lettersUsed : [], lettersUsedAfter : [], gameState: "start", word : this.generateWord(), chance : 6
+                this.setState({lettersUsed : [], lettersUsedAfter : [], gameState: "initStart", word : this.generateWord(), chance : 6
             });
           
 
-        } else if (gameState === "Fini" || gameState === "perdu") {
+        } else if (gameState === "Fini" || gameState === "perdu" || gameState === "mot découvert et fin") {
             chosenWord = 0;
-            this.setState({lettersUsed : [], gameState: "start", score : 0, chance : 6, word : this.generateWord()});
+            this.setState({lettersUsed : [], lettersUsedAfter : [], gameState: "initStart", score : 0, chance : 6, word : this.generateWord()});
         }
         
      
