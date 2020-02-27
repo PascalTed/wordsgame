@@ -43,15 +43,15 @@ class App extends React.Component {
         if (gameState === "stop") {
             return "Commencer à jouer";
 
-        } else if (gameState === "start" || gameState === "animation" || gameState === "initStart") {
+        } else if (gameState === "start" || gameState === "animation" || gameState === "initStart" || gameState === "découvrir mot") {
             console.log(chance)
             return "Découvrir le mot";
 
-        } else if (gameState === "perdu" || gameState === "Fini") {
+        } else if (gameState === "perdu" || gameState === "Fini" || gameState === "mot découvert et fini") {
             console.log(gameState)
             return "Nouvelle Partie";
 
-        } else if (gameState === "mot trouvé") {
+        } else if (gameState === "mot trouvé" || gameState === "mot découvert") {
             return "Mot suivant";
 
         }
