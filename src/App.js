@@ -153,7 +153,9 @@ class App extends React.Component {
     checkWord = () => {
 
         const {word, lettersUsed, lettersUsedAfter} = this.state;
+        console.log(lettersUsed)
         console.log(this.hiddenWord(lettersUsed))
+        
           
         
         let addToScore = 0
@@ -162,39 +164,67 @@ class App extends React.Component {
                 addToScore += 1
             }
         }
-
-        if (word === this.hiddenWord(lettersUsed)) {
-           console.log(chosenWord)
-            if ((chosenWord + 1) === words.length) {
-                this.setState((prevState, props) => ({
-                lettersUsedAfter : prevState.lettersUsed, gameState : prevState.gameState = "Fini", score : prevState.score += words.length + word.length + addToScore
+        
+        
+        if (this.state.gameState === "découvrir mot") {
+                
+            if ((chosenWord + 1) === words.length) {       
+                       this.setState((prevState, props) => ({
+                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot découvert et fini", score : prevState.score -= 10 
                 }));
-
+        
             } else {
                 this.setState((prevState, props) => ({
-                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot trouvé", score : prevState.score += word.length + addToScore
+                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot découvert", score : prevState.score -= 10 
                 }));
             }
-        } else {
-            
-            console.log(addToScore)
-            if (!word.includes(lettersUsed[lettersUsed.length-1])) {
-                console.log("test")
-                if (this.state.chance === 1) {
-                    console.log("test2")
+        }
+        
+        
+        
+        
+        //add letter
+        if (this.state.gameState === "animation"){
+        
+        
+
+            if (word === this.hiddenWord(lettersUsed)) {
+               console.log(chosenWord)
+                if ((chosenWord + 1) < words.length) {          
+                    
                     this.setState((prevState, props) => ({
-                    gameState : prevState.gameState = "perdu", score : prevState.score - 1, chance : prevState.chance - 1
+                    lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot trouvé", score : prevState.score += word.length + addToScore
                     }));
-                 } else {
-                this.setState((prevState, props) => ({
-                gameState : "start", score : prevState.score - 1, chance : prevState.chance - 1
-                }));
-            }
+                    
+                    
+
+                } else {
+                    this.setState((prevState, props) => ({
+                    lettersUsedAfter : prevState.lettersUsed, gameState : prevState.gameState = "Fini", score : prevState.score += words.length + word.length + addToScore
+                    }));
+                    
+                }
             } else {
-                this.setState((prevState, props) => ({
-                gameState : "start",lettersUsedAfter : prevState.lettersUsed, score : prevState.score + addToScore
-                })); 
-            } 
+
+                console.log(addToScore)
+                if (!word.includes(lettersUsed[lettersUsed.length-1])) {
+                    console.log("test")
+                    if (this.state.chance === 1) {
+                        console.log("test2")
+                        this.setState((prevState, props) => ({
+                        gameState : "perdu", score : prevState.score - 1, chance : prevState.chance - 1
+                        }));
+                     } else {
+                        this.setState((prevState, props) => ({
+                        gameState : "start" ,score : prevState.score - 1, chance : prevState.chance - 1
+                        }));
+                     }
+                } else {
+                    this.setState((prevState, props) => ({
+                    gameState : "start" ,lettersUsedAfter : prevState.lettersUsed, score : prevState.score + addToScore
+                    })); 
+                } 
+            }
         }
         
     }
