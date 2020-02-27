@@ -83,7 +83,7 @@ class App extends React.Component {
             });
           
 
-        } else if (gameState === "Fini" || gameState === "perdu" || gameState === "mot découvert et fin") {
+        } else if (gameState === "Fini" || gameState === "perdu" || gameState === "mot découvert et fini") {
             chosenWord = 0;
             this.setState({lettersUsed : [], lettersUsedAfter : [], gameState: "initStart", score : 0, chance : 6, word : this.generateWord()});
         }
