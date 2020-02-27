@@ -118,21 +118,14 @@ class App extends React.Component {
         
      
         // Ajouter lettre cliquée et vérifier
-        if (gameState === "start") {
+        if (gameState === "start" || gameState === "initstart") {
             console.log(this.state.gameState)
             if (!lettersUsed.includes(letter)) {
                      
                 this.setState((prevState) => ({
-                    gameState: "animation", lettersUsed : prevState.lettersUsed = [...lettersUsed, letter]
+                    gameState: "animation", lettersUsed :  [...prevState.lettersUsed, letter]
                 }),this.timeToCheckWord);
-             } else {
-                e.preventDefault();
-            console.log(lettersUsed)
              }
-
-        //Désactivation du Clique  sur toutes les lettres 
-        } else if (gameState === "animation" || gameState === "perdu" || gameState === "stop" || gameState === "mot trouvé" || gameState === "Fini") {
-            e.preventDefault();
         }
      
     }
