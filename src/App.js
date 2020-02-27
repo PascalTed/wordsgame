@@ -133,15 +133,30 @@ class App extends React.Component {
     verifiedLetters(letter) {
 
         const {word, lettersUsed} = this.state;
+        //console.log(letterUsed)
+        
+        if(lettersUsed.includes(letter)) {   
 
-        if(lettersUsed.includes(letter) && word.includes(letter)) {
-            return 'letterInWord';
-        } else if (lettersUsed.includes(letter) && !word.includes(letter)) {
-            return 'letterNotInWord';
+            if (word.includes(letter)) {
+                return 'letterInWord';
+            
+            } else if (!word.includes(letter)) {
+                return 'letterNotInWord';   
+        
+            }
+        
+            
+        }else if (!lettersUsed.includes(letter) && this.state.gameState === "start") {
+            return 'noClickLetter'; 
+ 
+            
+        }else if (this.state.gameState === "initstart") {
+            return 'initletter';
+        
+        
         } else if (this.state.gameState !== "start") {
             return 'letterNotAllowed';
-        } else if (!lettersUsed.includes(letter) && this.state.gameState === "start") {
-            return 'noClickLetter';
+
         }
     }
 
