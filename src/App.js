@@ -151,7 +151,7 @@ class App extends React.Component {
  
             
         }else if (this.state.gameState === "initStart") {
-            return 'initletter';
+            return 'initLetter';
         
         
         } else if (this.state.gameState !== "start") {
