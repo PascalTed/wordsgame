@@ -43,9 +43,9 @@ class App extends React.Component {
         if (gameState === "stop") {
             return "Commencer à jouer";
 
-        } else if ((gameState === "start" || gameState === "animation") && chance > 0) {
+        } else if (gameState === "start" || gameState === "animation" || gameState === "initstart") {
             console.log(chance)
-            return "Rejouer le mot";
+            return "Découvrir le mot";
 
         } else if (gameState === "perdu" || gameState === "Fini") {
             console.log(gameState)
