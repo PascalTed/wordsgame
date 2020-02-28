@@ -263,10 +263,6 @@ class App extends React.Component {
                     <DisplayScore
                         score={score}
                     />
-            
-                    <p>
-                        {word}
-                    </p>
 
                     <DisplayButton
                     onClick={this.handleButtonClick}
