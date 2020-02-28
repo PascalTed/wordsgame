@@ -29,6 +29,7 @@
     
     from {
         transform: scale(1);
+        background-color: rgb(100, 149, 237);
         }
     
     10% {
@@ -37,10 +38,10 @@
 
     50% {
         transform: scale(4) rotateY(360deg);
+        background-color: rgb(100, 149, 237);
         }
     
     75% {
-        background-color: transparent;
         cursor: pointer;
         }
 
@@ -60,6 +61,7 @@
     
     from {
         transform: scale(1);
+        background-color: rgb(100, 149, 237);
         }
     
     10% {
@@ -68,10 +70,10 @@
 
     50% {
         transform: scale(4) rotateY(360deg);
+        background-color: rgb(100, 149, 237);
         }
     
     75% {
-        background-color: transparent;
         cursor: pointer;
         }
 
@@ -108,7 +110,7 @@
     }
     to {
        background-color: rgb(100, 149, 237);
-        transform: rotateX(1080deg) ;
+        transform: rotateX(1080deg);
     }
 }
 
