@@ -93,21 +93,21 @@ class App extends React.Component {
     
     displayGameState () {
 
-        const {gameState, word} = this.state;
-
-        /*if (gameState === "start") {      
-            return "Partie en cours";
-        } */
-        if (gameState === "Fini") {
-           return "BRAVO !!! vous avez trouvé le dernier mot :";            
-        }
-        /*else if (gameState === "stop") {
-            return 'Cliquer pour commencer';
-        }*/
-        else if (gameState === "mot trouvé") {    
+        const {gameState} = this.state;
+   
+        if (gameState === "mot découvert"){
+            return "Le mot à découvrir était :";
+            
+        } else if (gameState === "mot trouvé") {    
             return "BRAVO !!! vous avez trouvé le mot :";
-        }
-        else if (gameState === "perdu") {    
+    
+        } else if (gameState === "mot découvert et fini"){
+            return "Le dernier mot à découvrir était :";
+            
+        } else if (gameState === "Fini") {
+           return "BRAVO !!! vous avez trouvé le dernier mot :";
+            
+        } else if (gameState === "perdu") {    
             return "PERDU !!!";
         }
     }
