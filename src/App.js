@@ -43,7 +43,7 @@ class App extends React.Component {
         if (gameState === "stop") {
             return "Commencer à jouer";
 
-        } else if (gameState === "start" || gameState === "animation" || gameState === "initStart" || gameState === "découvrir mot") {
+        } else if (gameState === "start" || gameState === "addLetter" || gameState === "initStart" || gameState === "découvrir mot") {
             console.log(chance)
             return "Découvrir le mot";
 
@@ -123,7 +123,7 @@ class App extends React.Component {
             if (!lettersUsed.includes(letter)) {
                      
                 this.setState((prevState) => ({
-                    gameState: "animation", lettersUsed :  [...prevState.lettersUsed, letter]
+                    gameState: "addLetter", lettersUsed :  [...prevState.lettersUsed, letter]
                 }),this.timeToCheckWord);
              }
         }
@@ -199,7 +199,7 @@ class App extends React.Component {
         
         
         //add letter
-        if (this.state.gameState === "animation"){
+        if (this.state.gameState === "addLetter"){
         
         
 
