@@ -277,7 +277,6 @@ class App extends React.Component {
                     <DisplayWord
                             displayWord={gameState !== "stop" ? this.hiddenWord(lettersUsedAfter) : false} 
                             clue= {words[chosenWord].clue}
-                            wordlength={word.length}
                             gameState={gameState}
                     />
                                 

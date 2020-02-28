@@ -2,21 +2,19 @@ import React from 'react';
 import './DisplayWord.css';
 
 const DisplayWord = function (props) {
-	if (props.gameState === "stop" || props.gameState === "perdu") {
+	if (props.gameState === "stop") {
 		return null
 	}
     return (
     	<div>
-	    	{(props.gameState !== "mot trouvé" && props.gameState !== "Fini") && <p>
-	    	Mot de {props.wordlength} lettres
-	    	</p>}
-
-	    	{(props.gameState !== "mot trouvé" && props.gameState !== "Fini") && <p>
-	    	Indice : {props.clue}
-	    	</p>}
-	      	<p className={props.word}>
+	      	<p id= "dWord">
 				 {props.displayWord}
 	      	</p>
+        
+	    	<p>
+	    	(Indice : {props.clue})
+	    	</p>
+
 
       	</div>
     )
