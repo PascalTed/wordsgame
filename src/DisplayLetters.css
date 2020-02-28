@@ -8,7 +8,7 @@
     width: 40px;
     height: 40px;
     margin: 5px;
-    background-color: rgb(100, 149, 237);
+    /*background-color: rgb(100, 149, 237);*/
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 12px;
     box-sizing: border-box;
@@ -86,6 +86,34 @@
     cursor: not-allowed;
     background-color: #bfbfbf;
 
+}
+
+
+.centerLetter.initLetter {
+    
+    animation: animInitLetter 1s;
+    animation-fill-mode :  forwards;
+}
+
+@keyframes animInitLetter {
+    
+    from {
+        background-color: #bfbfbf;
+    }
+    33% {
+        background-color: red;
+    }   
+    66% {
+        background-color: #00e600;
+    }
+    to {
+       background-color: rgb(100, 149, 237);
+        transform: rotateX(1080deg) ;
+    }
+}
+
+.centerLetter.noClickLetter {
+    background-color: rgb(100, 149, 237);
 }
 
 .letter {          
