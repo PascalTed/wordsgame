@@ -4,7 +4,7 @@ import './DisplayScore.css';
 const DisplayScore = function (props) {
 
     return (
-        <div id="score">
+        <div id="game-score">
             Score : {props.score}   
         </div>
     )
