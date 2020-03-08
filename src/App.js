@@ -91,6 +91,26 @@ class App extends React.Component {
      
     }
     
+    displayGameState () {
+
+        const {gameState} = this.state;
+   
+        if (gameState === "mot découvert"){
+            return "Le mot à découvrir était :";
+            
+        } else if (gameState === "mot trouvé") {    
+            return "BRAVO !!! vous avez trouvé le mot :";
+    
+        } else if (gameState === "mot découvert et fini"){
+            return "Le dernier mot à découvrir était :";
+            
+        } else if (gameState === "Fini") {
+           return "BRAVO !!! vous avez trouvé le dernier mot :";
+            
+        } else if (gameState === "perdu") {    
+            return "PERDU !!!";
+        }
+    }
     
     handleLetterClick = (e, letter) => {
 
@@ -165,12 +185,12 @@ class App extends React.Component {
                 
             if ((chosenWord + 1) === words.length) {       
                        this.setState((prevState, props) => ({
-                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot découvert et fini", score : prevState.score -= 10 
+                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot découvert et fini", score : prevState.score - 10 
                 }));
         
             } else {
                 this.setState((prevState, props) => ({
-                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot découvert", score : prevState.score -= 10 
+                lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot découvert", score : prevState.score - 10 
                 }));
             }
         }
@@ -188,14 +208,14 @@ class App extends React.Component {
                 if ((chosenWord + 1) < words.length) {          
                     
                     this.setState((prevState, props) => ({
-                    lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot trouvé", score : prevState.score += word.length + addToScore
+                    lettersUsedAfter : prevState.lettersUsed ,gameState : prevState.gameState = "mot trouvé", score : prevState.score + addToScore
                     }));
                     
                     
 
                 } else {
                     this.setState((prevState, props) => ({
-                    lettersUsedAfter : prevState.lettersUsed, gameState : prevState.gameState = "Fini", score : prevState.score += words.length + word.length + addToScore
+                    lettersUsedAfter : prevState.lettersUsed, gameState : prevState.gameState = "Fini", score : prevState.score + addToScore
                     }));
                     
                 }
