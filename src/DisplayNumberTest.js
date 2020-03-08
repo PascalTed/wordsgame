@@ -3,21 +3,28 @@ import './DisplayNumberTest.css';
 
 const DisplayNumberTest = function (props) {
 
-	
+    const chance = <span>{props.chance}</span>
+    
+    switch (props.gameState) {
         
-        if (props.gameState === "start" || props.gameState === "initStart" || props.gameState === "addLetter" || props.gameState === "découvrir mot" || props.gameState === "mot découvert" || props.gameState === "mot trouvé") {
-            return (<p>il vous reste <span id="nbTest">{props.chance}</span> essais</p>);
-        }
-        else if (props.gameState === "perdu") {
-            return (<p>"Vous avez utilisé tous les essais"</p>);
+        case "start":
+        case "initStart":
+        case "addLetter":
+        case "découvrir mot":
+        case "mot découvert":
+        case "mot trouvé":
+            return (<p id="game-chance">il vous reste {chance} essais</p>);
+        
+        case "perdu":
+            return (<p id="game-chance">Vous avez utilisé tous les essais</p>);
                     
-        } else if (props.gameState === "mot découvert et fini") {
-            return (<p>"il vous restait <span id="nbTest">{props.chance}</span> essais"</p>);
-        }
-                    
-        else {
+        case "mot découvert et fini":
+            return (<p id="game-chance">il vous restait {chance} essais</p>);
+        
+        default:
             return null;
-        }
+    }
+
 };
 
 
