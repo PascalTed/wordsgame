@@ -1,3 +1,7 @@
-#score {
-    text-align: left;
+#game-score {
+    color: rgb(184, 134, 11);
+    font-size: 20px;
+    margin: 20px 20px 28px 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
 }
