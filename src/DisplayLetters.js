@@ -6,7 +6,7 @@ const DisplayLetters = function (props) {
     return (
         <div>
             <div className = {`centerLetter ${props.verified}`} onClick= {(e) => props.onClick(e,props.letter)}>
-                <div className="letter"> 
+                <div className="game-letter"> 
                     {props.letter}
                 </div>
 
