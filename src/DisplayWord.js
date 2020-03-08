@@ -7,11 +7,11 @@ const DisplayWord = function (props) {
 	}
     return (
     	<div>
-	      	<p id= "dWord">
+	      	<p id= "game-word">
 				 {props.displayWord}
 	      	</p>
         
-	    	<p>
+	    	<p id= "game-indice">
 	    	(Indice : {props.clue})
 	    	</p>
 
