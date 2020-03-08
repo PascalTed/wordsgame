@@ -91,26 +91,6 @@ class App extends React.Component {
      
     }
     
-    displayGameState () {
-
-        const {gameState} = this.state;
-   
-        if (gameState === "mot découvert"){
-            return "Le mot à découvrir était :";
-            
-        } else if (gameState === "mot trouvé") {    
-            return "BRAVO !!! vous avez trouvé le mot :";
-    
-        } else if (gameState === "mot découvert et fini"){
-            return "Le dernier mot à découvrir était :";
-            
-        } else if (gameState === "Fini") {
-           return "BRAVO !!! vous avez trouvé le dernier mot :";
-            
-        } else if (gameState === "perdu") {    
-            return "PERDU !!!";
-        }
-    }
     
     handleLetterClick = (e, letter) => {
 
@@ -243,6 +223,16 @@ class App extends React.Component {
         }
         
     }
+    
+    calculSuffixNb() {
+        
+        let a = chosenWord + 1
+        if (a === 1 ) {
+            return "er"
+        } else {
+            return "ème";}
+        
+    }
 
     hiddenWord (letterInUsed) {
         
@@ -270,8 +260,10 @@ class App extends React.Component {
                     />
 
                     <DisplayGameState
-                            displayGameState={this.displayGameState()}
                             gameState = {gameState}
+                            suffixNumber = {this.calculSuffixNb()}
+                            wordLength = {words.length}
+                            chosenWord={chosenWord}
                     />
 
                     <DisplayWord
