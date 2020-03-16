@@ -1,7 +1,35 @@
-#game-word {
+.d-letter, .d-hyphen {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 0;
     color: rgb(100, 149, 237);
     text-shadow: 1px 1px 1px black;
+    animation: animationLetter 1s;
+    animation-fill-mode :  forwards;
+}
+
+@keyframes animationLetter {
+    from {
+        transform: scale(5);
+    }
+    
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+.d-underscore {
     font-size: 30px;
-    margin-bottom: 0;
     font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.d-space {
+    font-size: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
