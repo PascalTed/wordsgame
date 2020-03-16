@@ -9,7 +9,7 @@ import './App.css';
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-const words = [{word :'ELEPHANT', clue: 'pachyderme'}, {word :'SOLEIL', clue: 'étoile'}, {word :'CERISE', clue: 'fruit'}, {word :'BILBAO', clue: 'ville d\'Espagne'}, {word :'RAMBO', clue: 'film'}, {word :'PARADOXORNIS', clue: 'oiseau'}, {word :'CAROTTE', clue: 'légume'}, {word :'STEGOSAURE', clue: 'dinosaure'}];
+const words = [{word :'GARDON', clue: 'poisson d\'eau douce'}, {word :'ANDROMEDE', clue: 'galaxie'}, {word :'VIRUS', clue: 'agent infectieux'}, {word :'CHAUVE-SOURIS', clue: 'chiroptère'}, {word :'ELEPHANT', clue: 'pachyderme'}, {word :'SOLEIL', clue: 'étoile'}, {word :'CERISE', clue: 'fruit'}, {word :'BILBAO', clue: 'ville d\'Espagne'}, {word :'RAMBO', clue: 'film'}, {word :'PARADOXORNIS', clue: 'oiseau'}, {word :'CAROTTE', clue: 'légume'}, {word :'STEGOSAURE', clue: 'dinosaure'}];
 let chosenWord = 0;
 
 class App extends React.Component {
