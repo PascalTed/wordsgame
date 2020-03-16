@@ -162,7 +162,7 @@ class App extends React.Component {
 
     timeToCheckWord = () => {
         console.log("time");
-        setTimeout(this.checkWord,2000);
+        setTimeout(this.checkWord,1200);
     }
 
     checkWord = () => {
