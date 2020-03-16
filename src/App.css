@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+header h1 {
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 0 1px 2px black;
+    margin: 0;
+    background-color: rgb(100, 149, 237);
+    padding: 5px 25px 15px 25px;
+    border-radius: 0 0 50% 50%;
+}
+
 #lettersList {
     display: flex;
     flex-wrap: wrap;
