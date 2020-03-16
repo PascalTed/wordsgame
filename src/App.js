@@ -268,6 +268,10 @@ class App extends React.Component {
             
             <div className="App">
             
+                <header>
+                    <h1>Jeu de Mots</h1>
+                </header>
+            
                 <div>
             
                     <DisplayScore
