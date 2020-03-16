@@ -257,7 +257,7 @@ class App extends React.Component {
     hiddenWord (letterInUsed) {
         
         const { word } = this.state;
-         return word.replace(/\w/g, (letter) => (letterInUsed.includes(letter) ? letter : ' _ '));
+         return word.replace(/\w/g, (letter) => (letterInUsed.includes(letter) ? letter : '_'));
     }
     
     render() {
